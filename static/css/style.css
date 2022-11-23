@@ -1,0 +1,11 @@
+.pht{
+    width: 300;
+    height: 250;
+    border:5px solid red;
+    border-radius: 15px;
+    
+}
+td{
+    width: 150px;
+    height: 30px;
+}
