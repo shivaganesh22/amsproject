@@ -117,10 +117,12 @@ def signout(request):
     return redirect('home')
 s=0
 def student(request,id):
+    check=0
     form=Studentform()
     user=User.objects.get(id=id)
     global s
     if Students.objects.filter(username=user):
+        check=1
         s=Students.objects.get(username=user)
         form=Studentform(instance=s)
     if request.method=='POST':
@@ -128,6 +130,7 @@ def student(request,id):
             messages.error(request,"Enter Correct username")
         elif Students.objects.filter(username=user):
             s=Students.objects.get(username=user)
+            check=1
             form=Studentform(request.POST,instance=s)
             if form.is_valid():
                 form.save()
@@ -135,8 +138,7 @@ def student(request,id):
             form=Studentform(request.POST)
             if form.is_valid():
                 form.save()
-
-    return render(request,'student.html',{'form':form,'student':s})
+    return render(request,'student.html',{'form':form,'student':s,'check':check})
 def apply(request,id):
     form=inlineformset_factory(Students,Apply,fields=('branch','college'),can_delete=True,extra=3)
     s=Students.objects.get(id=id)
