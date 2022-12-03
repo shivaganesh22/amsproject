@@ -187,9 +187,17 @@ label{
                     
                 </form>
                     <div align="center">
+                        
+                        {%if check %}
                         <a  href="/apply/{{student.id}}">
                             <button class="btn btn-success">Apply Now</button>
                         </a>
+                        {%else%}
+                        
+                            <button class="btn btn-success" disabled>Apply Now</button>
+                        
+                    <p for="">Enter details to enable Apply button</p>
+                        {%endif%}
                     </div>
                     
                 </div>
